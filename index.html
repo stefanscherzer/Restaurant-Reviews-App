@@ -2,26 +2,46 @@
 <html>
 
 <head>
+  <!-- Normalize.css for better cross-browser consistency -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- Main CSS file -->
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurant Reviews</title>
+  <title>Restaurant Info</title>
 </head>
 
-<body>
-  <header>
+<body class="inside">
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <!-- Beginning header -->
+  <header id="header">
+    <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
+    <!-- End nav -->
   </header>
+  <!-- End header -->
 
-  <main id="maincontent">
-    <section id="map-container">
+  <!-- Beginning main -->
+  <main id="maincontent-main">
+    <!-- Beginning map -->
+    <section id="map-container-main">
       <div id="map"></div>
     </section>
+    <!-- End map -->
+
     <section>
       <div class="filter-options">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
         <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
@@ -43,6 +63,18 @@
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
 
+
+  <script>
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("maincontent-main").style.marginLeft = "250px";
+  }
+
+  function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("maincontent-main").style.marginLeft= "0";
+  }
+  </script>
 </body>
 
 </html>
