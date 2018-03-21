@@ -21,6 +21,7 @@
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <!-- Main CSS file -->
   <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=zocial" />
 </head>
 
 <body class="inside">
@@ -29,16 +30,6 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/">Home</a>
     <a href="/about.html">About</a>
-
-    <div class="filter-options">
-      <h2>Filter Results</h2>
-      <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
-        <option value="all">All Neighborhoods</option>
-      </select>
-      <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
-        <option value="all">All Cuisines</option>
-      </select>
-    </div>
   </div>
 
   <!-- Beginning header -->
@@ -53,24 +44,25 @@
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent-main">
-    <!-- Beginning map -->
-    <section id="map-container-main">
-      <div id="map"></div>
-    </section>
-    <!-- End map -->
+  <main id="maincontent-main" class="about">
 
-    <!-- Beginning restaurants-list -->
-    <section id="restaurants-container">
-      <ul id="restaurants-list"></ul>
-    </section>
-    <!-- End restaurants-list -->
+    <div id="sources">
+      <h2>Credits</h2>
+      Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris" target="_blank">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+    </div>
+
+    <div id="social">
+      <h2>Social links:</h2>
+      <a href="https://twitter.com/hellfish13" class="zocial-twitter" target="_blank">Twitter</a>
+      <a href="https://www.facebook.com/stefan.scherzer.5" class="zocial-facebook" target="_blank">Facebook</a>
+      <a href="https://github.com/stefanscherzer" class="zocial-github" target="_blank">GitHub</a>
+      <a href="https://www.xing.com/profile/Stefan_Scherzer" class="zocial-xing" target="_blank">XING</a>
+      <a href="https://www.linkedin.com/in/stefan-scherzer/" class="zocial-linkedin" target="_blank">LinkedIn</a>
+    </div>
+
   </main>
 
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/sidebar.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_I5HXdV-tJTwj0ljdzbCx8DsxAL3ejmg&libraries=places&callback=initMap"></script>
 
   <footer id="footer">
     Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.

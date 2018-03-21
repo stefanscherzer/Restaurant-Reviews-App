@@ -2,20 +2,40 @@
 <html>
 
 <head>
+  <meta name="description" content="Restaurant Review App" />
+  <meta name="author" content="StefanScherze">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta charset="utf-8">
+  <meta itemprop="name" content="Restaurant Review App">
+  <meta itemprop="image" content="images/icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta id="theme-color" name="theme-color" content="#307699">
+
+  <base target="_parent">
+
+  <title>Restaurant Info</title>
+
+  <link rel="icon" sizes="192x192" href="img/icon.png">
+
   <!-- Normalize.css for better cross-browser consistency -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <!-- Main CSS file -->
   <link rel="stylesheet" href="css/styles.css" type="text/css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurant Info</title>
 </head>
 
 <body class="inside">
+
+  <div id="mySidenav" class="sidenav-detail">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/">Home</a>
+    <a href="/about.html">About</a>
+  </div>
+
   <!-- Beginning header -->
   <header id="header">
     <!-- Beginning nav -->
     <nav>
+      <span onclick="openNav()">&#9776;</span>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
@@ -57,7 +77,7 @@
 
   <!-- Beginning footer -->
   <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+    Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
   <!-- End footer -->
 
@@ -66,6 +86,8 @@
   <script type="text/javascript" src="js/dbhelper.js"></script>
   <!-- Main javascript file -->
   <script type="text/javascript" src="js/restaurant_info.js"></script>
+  <!-- Sidebar javascript file -->
+  <script type="application/javascript" charset="utf-8" src="js/sidebar.js"></script>
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_I5HXdV-tJTwj0ljdzbCx8DsxAL3ejmg&libraries=places&callback=initMap"></script>
   <!-- End scripts -->
