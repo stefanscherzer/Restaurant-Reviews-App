@@ -141,7 +141,7 @@ ul, li {
 }
 
 a {
-	color: orange;
+	color: #b56000;
 	text-decoration: none;
 }
 
@@ -183,13 +183,17 @@ h1, h2, h3, h4, h5, h6 {
 
 #footer {
   background-color: #444;
-  color: #aaa;
+  color: #b1b1b1;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 15px 2px;
   text-align: center;
   text-transform: uppercase;
   width: 100%;
+}
+
+#footer a {
+  color: #dca48a;
 }
 
 /* ====================== Navigation ====================== */
@@ -243,7 +247,7 @@ nav h1 a {
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-    color: #0275d8;
+    color: #005096;
     text-decoration: none;
 }
 
@@ -328,7 +332,7 @@ nav h1 a {
 }
 
 #restaurants-list li h1 {
-  color: #f18200;
+  color: #b56000;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -344,7 +348,7 @@ nav h1 a {
 }
 
 #restaurants-list li a {
-  background-color: orange;
+  background-color: #b56000;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -395,7 +399,7 @@ nav h1 a {
 }
 
 #restaurant-name {
-  color: #f18200;
+  color: #b56000;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -454,7 +458,7 @@ nav h1 a {
 }
 
 #reviews-container h2 {
-  color: #f58500;
+  color: #7f4200;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
@@ -508,7 +512,7 @@ nav h1 a {
   justify-content: space-between;
   padding: 10px;
   color: white;
-  background-color: grey;
+  background-color: #767676;
   margin-bottom: 20px;
 }
 
@@ -519,14 +523,14 @@ nav h1 a {
 
 .review-date {
   font-size: 12pt;
-  color: lightgray;
+  color: white;
   display: flex;
   align-items: center;
   margin-right: 20px;
 }
 
 .review-rating {
-  background-color: orange;
+  background-color: #b56000;
   font-size: 12pt;
   color: white;
   font-weight: bold;
@@ -596,7 +600,7 @@ nav h1 a {
 }
 
 #sources h2 {
-  color: #f18200;
+  color: #b56000;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -612,7 +616,7 @@ nav h1 a {
 }
 
 #social h2 {
-  color: #f18200;
+  color: #b56000;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
