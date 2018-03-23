@@ -16,6 +16,10 @@ window.initMap = () => {
       });
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
+      google.maps.event.addListenerOnce(map, 'idle', function(){
+        // do something only the first time the map is loaded
+        document.getElementsByTagName('iframe')[0].setAttribute('title', 'Google Maps for restaurants');
+      });
     }
   });
 }
@@ -55,9 +59,30 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
-  const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  // const image = document.getElementById('restaurant-img');
+  // image.className = 'restaurant-img'
+  // image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  // image.alt = restaurant.name;
+
+  const imgURL = DBHelper.imageUrlForRestaurant(restaurant);
+  const imgName = imgURL.substring(0, imgURL.lastIndexOf('.'));
+  const ext = imgURL.substring(imgURL.lastIndexOf('.')+1);;
+
+  const picture = document.getElementById('restaurant-pic');
+  const src1 = document.createElement('source');
+  src1.setAttribute('media', '{min-width: 801px}');
+  src1.setAttribute('srcset', imgName + '_large_1x.' + ext + ' 1x, ' + imgName + '_large_2x.' + ext + ' 2x');
+  picture.append(src1);
+  const src2 = document.createElement('source');
+  src2.setAttribute('media', '{min-width: 501px}');
+  src2.setAttribute('srcset', imgName + '_medium_1x.' + ext + ' 1x, ' + imgName + '_medium_2x.' + ext + ' 2x');
+  picture.append(src2);
+  const image = document.createElement('img');
+  image.id = 'restaurant-img';
+  image.src = imgName + '_small.' + ext;
+  image.alt = restaurant.name;
+  picture.append(image);
+  // li.append(picture);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
