@@ -1,9 +1,6 @@
 # Restaurant Reviews App
 
 
-
-### Specification
-
 You have been provided the code for a restaurant reviews website. The code has a lot of issues. It’s barely usable on a desktop browser, much less a mobile device. It also doesn’t include any standard accessibility features, and it doesn’t work offline at all. Your job is to update the code to resolve these issues while still maintaining the included functionality.
 
 
@@ -49,24 +46,6 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
     ├── main.js
     ├── restaurant_info.js
     └── sidebar.js
-```
-
-## Create React Native App
-
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
-
-If you need information about performing common tasks, the most recent version the Create React Native App guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
-
-### `yarn start`
-
-Runs your app in development mode.
-
-Open it in the [Expo app](https://expo.io) on your phone to view it. It will reload if you save edits to your files, and you will see build errors and logs in the terminal.
-
-Sometimes you may need to reset or clear the React Native packager's cache. To do so, you can pass the `--reset-cache` flag to the start script:
-
-```
-yarn start -- --reset-cache
 ```
 
 ## Contributing
