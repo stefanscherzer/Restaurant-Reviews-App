@@ -46,7 +46,7 @@ a:hover [class*="zocial-"]:before {
     padding-left: 0;
   }
 
-  nav h1 a {
+  nav[role="main"] h1 a {
     letter-spacing: 2px;
   }
 }
@@ -80,7 +80,7 @@ a:hover [class*="zocial-"]:before {
     padding-left: 20px;
   }
 
-  nav h1 a {
+  nav[role="main"] h1 a {
     letter-spacing: 6px;
   }
 }
@@ -114,7 +114,7 @@ a:hover [class*="zocial-"]:before {
     flex: auto;
   }
 
-  nav h1 a {
+  nav[role="main"] h1 a {
     letter-spacing: 10px;
   }
 }
@@ -195,7 +195,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ====================== Navigation ====================== */
-nav {
+nav[role="main"] {
   width: 100%;
   height: 50px;
   background-color: #252831;
@@ -203,19 +203,19 @@ nav {
   display: flex;
 }
 
-nav span {
+nav[role="main"] span {
   padding-left: 10px;
   font-size: 26pt;
   cursor:pointer;
   color: #fff;
 }
 
-nav h1 {
+nav[role="main"] h1 {
   margin: auto;
   padding-top: 5px;
 }
 
-nav h1 a {
+nav[role="main"] h1 a {
   color: #fff;
   font-size: 14pt;
   font-weight: 200;
@@ -458,7 +458,7 @@ nav h1 a {
   margin-bottom: 20px;
 }
 
-#reviews-container h2 {
+#reviews-container h3 {
   color: #7f4200;
   font-size: 24pt;
   font-weight: 300;

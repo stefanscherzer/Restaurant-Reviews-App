@@ -34,30 +34,32 @@
   <!-- Beginning header -->
   <header id="header">
     <!-- Beginning nav -->
-    <nav>
+    <nav role="main">
       <span onclick="openNav()">&#9776;</span>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
-      <li><a href="/">Home</a></li>
-    </ul>
+    <nav role="breadcrumb" aria-label="Breadcrumb">
+      <ul id="breadcrumb" >
+        <li><a href="/">Home</a></li>
+      </ul>
+    </nav>
     <!-- End breadcrumb -->
     <!-- End nav -->
   </header>
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent">
+  <main id="maincontent" role="main">
     <!-- Beginning map -->
     <section id="map-container">
-      <div id="map"></div>
+      <div id="map" role="application"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
     <section id="restaurant-container">
       <div class="restaurant-info">
-        <h1 id="restaurant-name"></h1>
+        <h2 id="restaurant-name"></h2>
         <picture id="restaurant-pic"></picture>
         <p id="restaurant-cuisine"></p>
       </div>
@@ -82,6 +84,8 @@
   <!-- End footer -->
 
   <!-- Beginning scripts -->
+  <!-- ServiceWorker javascript file -->
+  <script type="text/javascript" src="js/serviceworker.js"></script>
   <!-- Database helpers -->
   <script type="text/javascript" src="js/dbhelper.js"></script>
   <!-- Main javascript file -->

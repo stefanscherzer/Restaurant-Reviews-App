@@ -61,7 +61,7 @@ module.exports = function(grunt) {
     /* Clear out the images directory if it exists */
     clean: {
       dev: {
-        src: ['images'],
+        src: ['img', 'sw.js'],
       },
     },
 
@@ -82,15 +82,33 @@ module.exports = function(grunt) {
               dest: 'img/',
               expand: true
           }]
+      },
+    },
+
+    injector: {
+      options: {
+        template: 'sw.template.js',
+        dest: 'sw.js',
+        starttag: '// injector:images',
+        endtag: '// endinjector',
+        transform: function (filePath) {
+          return "'" + filePath + "',";
+        }
+      },
+      local_dependencies: {
+        files: {
+          'sw.js': ['img/*.{gif,jpg,png}']
+        }
       }
-    }
+    },
 
   });
 
+  grunt.loadNpmTasks('grunt-injector');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-mkdir');
-  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
+  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images', 'injector']);
 
 };

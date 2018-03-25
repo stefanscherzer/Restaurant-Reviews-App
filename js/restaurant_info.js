@@ -59,11 +59,6 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
-  // const image = document.getElementById('restaurant-img');
-  // image.className = 'restaurant-img'
-  // image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  // image.alt = restaurant.name;
-
   const imgURL = DBHelper.imageUrlForRestaurant(restaurant);
   const imgName = imgURL.substring(0, imgURL.lastIndexOf('.'));
   const ext = imgURL.substring(imgURL.lastIndexOf('.')+1);;
@@ -80,9 +75,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.createElement('img');
   image.id = 'restaurant-img';
   image.src = imgName + '_small.' + ext;
-  image.alt = restaurant.name;
+  image.alt = restaurant.name + ' - restaurant\'s photo';;
   picture.append(image);
-  // li.append(picture);
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -120,7 +114,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
+  const title = document.createElement('h3');
   title.innerHTML = 'Reviews';
   container.appendChild(title);
 
@@ -176,7 +170,19 @@ createReviewHTML = (review) => {
 fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
-  li.innerHTML = restaurant.name;
+
+  // var a = document.createElement('a');
+  // var linkText = document.createTextNode("my title text");
+  // a.appendChild(linkText);
+  // a.title = "my title text";
+  // a.href = "http://example.com";
+
+  const a = document.createElement('a');
+  a.href = DBHelper.urlForRestaurant(restaurant);
+  a.innerHTML = restaurant.name;
+  a.setAttribute('aria-current', 'page');
+  li.appendChild(a);
+
   breadcrumb.appendChild(li);
 }
 

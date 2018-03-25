@@ -46,7 +46,7 @@
   <!-- Beginning header -->
   <header id="header">
     <!-- Beginning nav -->
-    <nav>
+    <nav role="main">
       <span onclick="openNav()">&#9776;</span>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
@@ -55,10 +55,10 @@
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent-main">
+  <main id="maincontent-main" role="main">
     <!-- Beginning map -->
     <section id="map-container-main">
-      <div id="map"></div>
+      <div id="map" role="application"></div>
     </section>
     <!-- End map -->
 
@@ -69,10 +69,18 @@
     <!-- End restaurants-list -->
   </main>
 
-  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <!-- Beginning scripts -->
+  <!-- ServiceWorker javascript file -->
+  <script type="text/javascript" src="js/serviceworker.js"></script>
+  <!-- Database helpers -->
+  <script type="text/javascript" src="js/dbhelper.js"></script>
+  <!-- Main javascript file -->
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <!-- Sidebar javascript file -->
   <script type="application/javascript" charset="utf-8" src="js/sidebar.js"></script>
+  <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_I5HXdV-tJTwj0ljdzbCx8DsxAL3ejmg&libraries=places&callback=initMap"></script>
+  <!-- End scripts -->
 
   <footer id="footer">
     Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
