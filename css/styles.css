@@ -18,14 +18,6 @@ a:hover [class*="zocial-"]:before {
     height: 280px;
   }
 
-  #restaurants-list {
-    flex-direction: column;
-  }
-
-  #restaurants-list li {
-    width: 100%;
-  }
-
   #restaurant-container {
     flex-direction: column;
   }
@@ -56,10 +48,6 @@ a:hover [class*="zocial-"]:before {
     height: 320px;
   }
 
-  #restaurants-list li {
-    width: 80%;
-  }
-
   #restaurant-container {
     flex-direction: row;
   }
@@ -88,14 +76,6 @@ a:hover [class*="zocial-"]:before {
 @media screen and (min-width: 801px) {
   .inside #map-container, .inside #map-container-main {
     height: 400px;
-  }
-
-  #restaurants-list li {
-    width: 38%;
-  }
-
-  #restaurants-list:after {
-    flex: auto;
   }
 
   .restaurant-info {
@@ -296,30 +276,33 @@ nav[role="main"] h1 a {
 
 #restaurants-list {
   background-color: #f3f3f3;
-  /* list-style: outside none none; */
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: center;
-
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #restaurants-list li {
   background-color: #fff;
   border: 2px solid #ccc;
   font-family: Arial,sans-serif;
-  margin: 15px;
   min-height: 380px;
-  padding: 15px 30px 20px;
+  min-width: 250px;
+  max-width: 300px;
   text-align: left;
   border-radius: 40px 10px;
+  padding: 1.5rem;
+  flex: 1 0 calc(33.3333% - 10px);
+  margin-left: 10px;
+	margin-top: 10px;
 }
 
 #restaurants-list .restaurant-img {
@@ -332,7 +315,7 @@ nav[role="main"] h1 a {
   border-radius: 8px;
 }
 
-#restaurants-list li h1 {
+#restaurants-list li h2 {
   color: #b56000;
   font-family: Arial,sans-serif;
   font-size: 14pt;

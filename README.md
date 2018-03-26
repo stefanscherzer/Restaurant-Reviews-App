@@ -1,8 +1,9 @@
 # Restaurant Reviews App
 
+The restaurant reviews app has an overview with restaurants on it.
+On the restaurants detail page you find reviews regarding the selected restaurant.
 
-You have been provided the code for a restaurant reviews website. The code has a lot of issues. It’s barely usable on a desktop browser, much less a mobile device. It also doesn’t include any standard accessibility features, and it doesn’t work offline at all. Your job is to update the code to resolve these issues while still maintaining the included functionality.
-
+It's a full responsive app which covers the standard accessibility features and due it's service worker implementation it also works offline.
 
 ## TL;DR
 
@@ -10,7 +11,7 @@ To get started developing right away:
 After clone this repository, run command below
 
 * install all project dependencies with `npm install`
-* run `grunt` to generate the apps image folder **img** and the images
+* run `grunt` to generate the apps image folder **img** and the images, minify the css, uglify the js, etc.
 
 
 ### What do I do from here?
@@ -25,6 +26,7 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
 ## What You're Getting
 ```bash
 ├── README.md - This file.
+├── .gitingnore
 ├── about.html
 ├── Gruntfile.js
 ├── index.html
@@ -32,9 +34,9 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
 ├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
 ├── package-lock.json #  is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
 ├── restaurant.html
-├── sw.js # the service worker javascript
+├── sw.template.js # the service worker javascript template
 ├── assets
-    ├── icon_256.png # the app icon in higher resolution
+│   ├── icon_256.png # the app icon in higher resolution
 │   └── icon.png # the app icon
 ├── css
 │   └── styles.css # the stylesheet
@@ -45,6 +47,7 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
     ├── dbhelper.js
     ├── main.js
     ├── restaurant_info.js
+    ├── serviceworker.js
     └── sidebar.js
 ```
 

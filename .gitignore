@@ -7,3 +7,5 @@
 /img
 
 sw.js
+*.min.css
+*.min.js

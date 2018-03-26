@@ -1,4 +1,4 @@
-var staticCacheName = 'restaurants-v1';
+var staticCacheName = 'restaurants-v4';
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
@@ -8,13 +8,11 @@ self.addEventListener('install', function(event) {
         '/index.html',
         '/about.html',
         '/restaurant.html',
-        '/css/styles.css',
+        '/css/styles.min.css',
         '/data/restaurants.json',
-        '/js/serviceworker.js',
-        '/js/main.js',
-        '/js/dbhelper.js',
-        '/js/restaurant_info.js',
-        '/js/sidebar.js',
+        '/js/index.min.js',
+        '/js/restaurant.min.js',
+        '/js/about.min.js',
         // injector:images
         // endinjector
       ]);

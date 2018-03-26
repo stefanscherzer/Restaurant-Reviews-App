@@ -1,11 +1,3 @@
-/*
- After you have changed the settings under responsive_images
- run this with one of these options:
-  "grunt" alone creates a new, completed images directory
-  "grunt clean" removes the images directory
-  "grunt responsive_images" re-processes images without removing the old ones
-*/
-
 module.exports = function(grunt) {
 
   grunt.initConfig({
@@ -44,11 +36,6 @@ module.exports = function(grunt) {
             rename: false
           }]
         },
-
-        /*
-        You don't need to change this part if you don't change
-        the directory structure.
-        */
         files: [{
           expand: true,
           src: ['*.{gif,jpg,png}'],
@@ -58,14 +45,12 @@ module.exports = function(grunt) {
       }
     },
 
-    /* Clear out the images directory if it exists */
     clean: {
       dev: {
         src: ['img', 'sw.js'],
       },
     },
 
-    /* Generate the images directory if it is missing */
     mkdir: {
       dev: {
         options: {
@@ -102,13 +87,66 @@ module.exports = function(grunt) {
       }
     },
 
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'css/',
+          src: ['*.css', '!*.min.css'],
+          dest: 'css/',
+          ext: '.min.css'
+        }]
+      }
+    },
+
+    uglify: {
+      my_target: {
+        options: {
+          beautify: true
+        },
+        files: {
+          'js/index.min.js':
+            [
+              'js/serviceworker.js',
+              'js/dbhelper.js',
+              'js/main.js',
+              'js/sidebar.js',
+            ],
+          'js/restaurant.min.js':
+            [
+              'js/serviceworker.js',
+              'js/dbhelper.js',
+              'js/restaurant_info.js',
+              'js/sidebar.js',
+            ],
+          'js/about.min.js':
+            [
+              'js/serviceworker.js',
+              'js/sidebar.js',
+            ]
+        }
+      }
+    },
+
   });
 
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-injector');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-mkdir');
-  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images', 'injector']);
+  grunt.registerTask(
+      'default',
+      [
+        'clean',
+        'mkdir',
+        'copy',
+        'responsive_images',
+        'injector',
+        'cssmin',
+        'uglify'
+      ]);
 
 };
