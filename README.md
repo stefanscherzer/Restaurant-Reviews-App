@@ -12,7 +12,9 @@ After clone this repository, run command below
 
 * install all project dependencies with `npm install`
 * run `grunt` to generate the apps image folder **img** and the images, minify the css, uglify the js, etc.
-
+  * in order to be able to run the grunt process without any issues, make sure you have ImageMagick installed.
+    * If you're a Mac user and have Homebrew installed, simply type: `brew install ImageMagick`
+    * otherwise, please follow the instructions here: [grunt-responsive-images](https://github.com/andismith/grunt-responsive-images)
 
 ### What do I do from here?
 
