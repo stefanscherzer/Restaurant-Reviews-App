@@ -59,9 +59,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
 
-  const imgURL = DBHelper.imageUrlForRestaurant(restaurant);
-  const imgName = imgURL.substring(0, imgURL.lastIndexOf('.'));
-  const ext = imgURL.substring(imgURL.lastIndexOf('.')+1);;
+  const imgName = DBHelper.imageUrlForRestaurant(restaurant);
+  const ext = 'jpg';
 
   const picture = document.getElementById('restaurant-pic');
   const src1 = document.createElement('source');

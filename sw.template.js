@@ -13,6 +13,8 @@ self.addEventListener('install', function(event) {
         '/js/index.min.js',
         '/js/restaurant.min.js',
         '/js/about.min.js',
+        'http://weloveiconfonts.com/api/?family=zocial',
+        'http://normalize-css.googlecode.com/svn/trunk/normalize.css'
         // injector:images
         // endinjector
       ]);
