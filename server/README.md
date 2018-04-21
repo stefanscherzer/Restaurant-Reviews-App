@@ -1,4 +1,7 @@
 # Local Development API Server
+
+This local development API server is forked from [here](https://github.com/udacity/mws-restaurant-stage-2).
+
 ## Usage
 #### Get Restaurants
 ```
@@ -32,7 +35,7 @@ Great, you are ready to proceed forward; awesome!
 Let's start with running commands in your terminal, known as command line interface (CLI)
 
 ###### Install project dependencies
-```Install project dependancies
+```Install project dependencies
 # npm i
 ```
 ###### Install Sails.js globally
@@ -44,9 +47,9 @@ Let's start with running commands in your terminal, known as command line interf
 # node server
 ```
 ### You should now have access to your API server environment
-debug: Environment : development
+debug: Environment : development  
 debug: Port        : 1337
 
-
+## Contributing
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 submitting an issue to our [Waffle Dashboard](https://waffle.io/udacity/mwnd-issues). Even better you can submit a Pull Request with a fix :)
