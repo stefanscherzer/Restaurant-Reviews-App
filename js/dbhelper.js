@@ -3,6 +3,59 @@
  */
 class DBHelper {
 
+  static initIDB() {
+    var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
+    var open = indexedDB.open('restaurant-db', 1);
+
+    open.onupgradeneeded = function() {
+      var db = open.result;
+      var store = db.createObjectStore("restaurants", {keyPath: "id"});
+    };
+
+    return open;
+  }
+
+  static readIDB(callback) {
+    var open = DBHelper.initIDB();
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      var db = open.result;
+      var tx = db.transaction("restaurants", "readonly");
+      var store = tx.objectStore("restaurants");
+
+      var getRestaurants = store.getAll();
+
+      getRestaurants.onsuccess = function() {
+          callback(getRestaurants.result);
+      };
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+          db.close();
+      };
+    }
+  }
+
+  static writeIDB(data) {
+    var open = DBHelper.initIDB();
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      var db = open.result;
+      var tx = db.transaction("restaurants", "readwrite");
+      var store = tx.objectStore("restaurants");
+
+      store.put(data);
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+          db.close();
+      };
+    }
+  }
+
   /**
    * Database URL.
    * Change this to restaurants.json file location on your server.
@@ -16,14 +69,23 @@ class DBHelper {
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    fetch(DBHelper.DATA_URL, {method: "GET"})
-      .then((resp) => resp.json())
-      .then(function(data) {
-        callback(null, data);
-      })
-      .catch(function(error) {
-        callback(error, null);
-      });
+    DBHelper.readIDB((restaurants) => {
+      if (typeof restaurants !== 'undefined' && restaurants.length > 0) {
+        console.log('restaurants from IDB');
+        callback(null, restaurants);
+      } else {
+        console.log('restaurants from API');
+        fetch(DBHelper.DATA_URL, {method: "GET"})
+          .then((resp) => resp.json())
+          .then(function(data) {
+            data.map(restaurant => DBHelper.writeIDB(restaurant));
+            callback(null, data);
+          })
+          .catch(function(error) {
+            callback(error, null);
+          });
+      }
+    });
   }
 
   /**
