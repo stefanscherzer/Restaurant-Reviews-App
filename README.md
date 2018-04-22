@@ -31,20 +31,27 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
 ├── .gitingnore
 ├── about.html
 ├── Gruntfile.js
+├── humans.txt # humanstxt.org
 ├── index.html
 ├── LICENSE # the file where the license information for the project is stored.
+├── manifest.json # PWA manifest file
 ├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
 ├── package-lock.json #  is automatically generated for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
 ├── restaurant.html
+├── robots.txt # www.robotstxt.org
 ├── sw.template.js # the service worker javascript template
 ├── assets
-│   ├── icon_256.png # the app icon in higher resolution
-│   └── icon.png # the app icon
+│   ├── icon.png # the app icon
+│   ├── icon-192x192.png # the app icon
+│   ├── icon-256x256.png # the app icon
+│   ├── icon-384x384.png # the app icon
+│   └── icon-512x512.png # the app icon
 ├── css
 │   └── styles.css # the stylesheet
 ├── data
 │   └── restaurants.json # the mocked restaurants data
 ├── img_src # this folder contains all the images for the app
+├── server # this folder contains a local mock server with the restaurants data. see README inside to know how to use it.
 └── js
     ├── dbhelper.js
     ├── main.js
