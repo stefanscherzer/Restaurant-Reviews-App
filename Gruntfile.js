@@ -8,31 +8,31 @@ module.exports = function(grunt) {
           sizes: [{
             width: 2048,
             suffix: '_large_2x',
-            quality: 50,
+            quality: 30,
             rename: false
           },
           {
             width: 1024,
             suffix: '_large_1x',
-            quality: 50,
+            quality: 30,
             rename: false
           },
           {
             width: 1280,
             suffix: '_medium_2x',
-            quality: 50,
+            quality: 30,
             rename: false
           },
           {
             width: 640,
             suffix: '_medium_1x',
-            quality: 50,
+            quality: 30,
             rename: false
           },
           {
             width: 320,
             suffix: '_small',
-            quality: 50,
+            quality: 30,
             rename: false
           }]
         },
@@ -63,7 +63,25 @@ module.exports = function(grunt) {
       dev: {
           files: [{
               cwd: 'assets/',
-              src: 'icon.png',
+              src: 'icon-192x192.png',
+              dest: 'img/',
+              expand: true
+          },
+          {
+              cwd: 'assets/',
+              src: 'icon-256x256.png',
+              dest: 'img/',
+              expand: true
+          },
+          {
+              cwd: 'assets/',
+              src: 'icon-384x384.png',
+              dest: 'img/',
+              expand: true
+          },
+          {
+              cwd: 'assets/',
+              src: 'icon-512x512.png',
               dest: 'img/',
               expand: true
           }]

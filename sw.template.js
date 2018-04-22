@@ -1,21 +1,23 @@
-var staticCacheName = 'restaurants-v5';
+const version = '0.1.3';
+const staticCacheName = `restaurants-${version}`;
 
 self.addEventListener('install', function(event) {
+  const timeStamp = Date.now();
   event.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
       return cache.addAll([
         '/',
-        '/index.html',
-        '/about.html',
-        '/restaurant.html',
-        '/css/styles.min.css',
-        '/data/restaurants.json',
-        '/js/index.min.js',
-        '/js/restaurant.min.js',
-        '/js/about.min.js',
+        `/index.html?timestamp=${timeStamp}`,
+        `/about.html?timestamp=${timeStamp}`,
+        `/restaurant.html?timestamp=${timeStamp}`,
+        `/css/styles.min.css?timestamp=${timeStamp}`,
+        `/js/index.min.js?timestamp=${timeStamp}`,
+        `/js/restaurant.min.js?timestamp=${timeStamp}`,
+        `/js/about.min.js?timestamp=${timeStamp}`,
         // injector:images
         // endinjector
-      ]);
+      ])
+      .then(() => self.skipWaiting());
     })
   );
 });
