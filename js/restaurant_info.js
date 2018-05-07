@@ -53,6 +53,9 @@ fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
+  const restaurant_id = document.getElementById('restaurant-id');
+  restaurant_id.value = restaurant.id;
+
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
 

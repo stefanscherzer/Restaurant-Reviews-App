@@ -61,8 +61,13 @@ class DBHelper {
    * Change this to restaurants.json file location on your server.
    */
   static get DATA_URL() {
-    const port = 1337 // Change this to your server port
+    const port = 1337; // Change this to your server port
     return `http://localhost:${port}/restaurants`;
+  }
+
+  static get REVIEW_POST_URL() {
+    const port = 1337; // Change this to your server port
+    return `http://localhost:${port}/reviews/`;
   }
 
   /**
@@ -222,6 +227,28 @@ class DBHelper {
       animation: google.maps.Animation.DROP}
     );
     return marker;
+  }
+
+  static postReview(reviewData) {
+    console.log('post review to API');
+    fetch(DBHelper.REVIEW_POST_URL, {
+      method: 'POST',
+      body: reviewData,
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      // credentials: 'same-origin', // include, same-origin, *omit
+      mode: 'no-cors', // no-cors, cors, *same-origin
+      redirect: 'follow', // manual, *follow, error
+      referrer: 'no-referrer', // *client, no-referrer
+    })
+    .then(function() {
+      console.log('success posting review!');
+    })
+    .catch(function(error) {
+      console.log('error posting review: ', error);
+    });
   }
 
 }

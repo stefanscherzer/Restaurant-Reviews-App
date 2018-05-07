@@ -67,6 +67,9 @@
       <div class="restaurant-info" id="info-right">
         <p id="restaurant-address"></p>
         <table id="restaurant-hours"></table>
+
+        <!-- Trigger/Open The Modal -->
+        <button id="reviewBtn" class="button">Add review</button>
       </div>
     </section>
     <!-- end restaurant -->
@@ -83,6 +86,42 @@
     Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
   <!-- End footer -->
+
+    <!-- The Modal -->
+  <div id="reviewModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>Review Form</h2>
+      </div>
+      <div class="modal-body">
+
+        <form action="#" method="POST" name="reviewForm" id="reviewForm">
+          <input type="hidden" name="restaurant_id" id="restaurant-id" value="">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Your name..">
+
+          <label for="rating">Rating</label>
+          <select id="rating" name="rating">
+            <option value="1">1 Point</option>
+            <option value="2">2 Points</option>
+            <option value="3">3 Points</option>
+            <option value="4">4 Points</option>
+            <option value="5">5 Points</option>
+          </select>
+
+          <label for="comment">Comment</label>
+          <textarea id="comment" name="comments" placeholder="Write something.." style="height:200px"></textarea>
+
+          <button id="submitModal">Submit</button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
 
   <!-- Beginning scripts -->
   <script type="application/javascript" charset="utf-8" src="js/restaurant.min.js"></script>
