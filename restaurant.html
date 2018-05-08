@@ -70,6 +70,14 @@
 
         <!-- Trigger/Open The Modal -->
         <button id="reviewBtn" class="button">Add review</button>
+        <div class="alert" id="msg_error">
+          <span class="closebtn">&times;</span>
+          <strong>Error!</strong> The review couldn't be saved!
+        </div>
+        <div class="alert success" id="msg_success">
+          <span class="closebtn">&times;</span>
+          <strong>Success!</strong> The review was successfully saved!
+        </div>
       </div>
     </section>
     <!-- end restaurant -->
@@ -89,7 +97,6 @@
 
     <!-- The Modal -->
   <div id="reviewModal" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
@@ -97,7 +104,6 @@
         <h2>Review Form</h2>
       </div>
       <div class="modal-body">
-
         <form action="#" method="POST" name="reviewForm" id="reviewForm">
           <input type="hidden" name="restaurant_id" id="restaurant-id" value="">
           <label for="name">Your name</label>
@@ -117,10 +123,8 @@
 
           <button id="submitModal">Submit</button>
         </form>
-
       </div>
     </div>
-
   </div>
 
   <!-- Beginning scripts -->

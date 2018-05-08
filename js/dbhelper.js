@@ -244,9 +244,15 @@ class DBHelper {
       referrer: 'no-referrer', // *client, no-referrer
     })
     .then(function() {
+      var msg = document.getElementById("msg_success");
+      msg.style.opacity = "1";
+      msg.style.display = "block";
       console.log('success posting review!');
     })
     .catch(function(error) {
+      var msg = document.getElementById("msg_error");
+      msg.style.opacity = "1";
+      msg.style.display = "block";
       console.log('error posting review: ', error);
     });
   }

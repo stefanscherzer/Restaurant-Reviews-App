@@ -143,6 +143,7 @@ module.exports = function(grunt) {
               'js/restaurant_info.js',
               'js/sidebar.js',
               'js/modal.js',
+              'js/alert.js',
             ],
           'js/about.min.js':
             [

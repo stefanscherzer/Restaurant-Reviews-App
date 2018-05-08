@@ -432,44 +432,7 @@
         "id": 10
       }
     ],
-    "reviews": [
-      {
-        "restaurant_id": "3",
-        "name": "Stefan",
-        "rating": "3",
-        "comments": "asdfadf asd fa sdf",
-        "createdAt": "2018-05-07T21:25:12.740Z",
-        "updatedAt": "2018-05-07T21:25:12.740Z",
-        "id": 7
-      },
-      {
-        "restaurant_id": "3",
-        "name": "Stefan",
-        "rating": "3",
-        "comments": "asdf asdf asdf",
-        "createdAt": "2018-05-07T21:29:03.759Z",
-        "updatedAt": "2018-05-07T21:29:03.759Z",
-        "id": 8
-      },
-      {
-        "restaurant_id": "3",
-        "name": "Hans",
-        "rating": "5",
-        "comments": "askjdf ölakjs dfölajsölkdf jas\r\nasljdfhl akjsd fljkasdf \r\nlaksjdfl jashdl fjhals dkfjh",
-        "createdAt": "2018-05-07T21:36:27.742Z",
-        "updatedAt": "2018-05-07T21:36:27.742Z",
-        "id": 9
-      },
-      {
-        "restaurant_id": "3",
-        "name": "Susi",
-        "rating": "1",
-        "comments": "öalskdj fölaskjd flökjasd öflkja söd\r\nasdlkfhjga ksdhjfg lajksldf\r\nasldkjfhöajksdhf öasdöf klajdlsökfa s",
-        "createdAt": "2018-05-07T21:37:07.462Z",
-        "updatedAt": "2018-05-07T21:37:07.462Z",
-        "id": 10
-      }
-    ]
+    "reviews": []
   },
   "schema": {
     "restaurant": {
@@ -523,7 +486,7 @@
       "id": 10
     },
     "reviews": {
-      "id": 10
+      "id": 18
     }
   }
 }
