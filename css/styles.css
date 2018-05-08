@@ -181,6 +181,7 @@ nav[role="main"] {
   background-color: #252831;
   text-align:center;
   display: flex;
+  justify-content: flex-end;
 }
 
 nav[role="main"] span {
@@ -755,4 +756,22 @@ input[type=text], select, textarea {
 
 .closebtn:hover {
     color: black;
+}
+
+/* ============= On- / Offline Status Indicator =========== */
+
+#status {
+  position : fixed;
+  width: 100px;
+  /* font : bold 1em sans-serif; */
+  color: #FFF;
+  padding : 0.5em;
+}
+
+.online {
+  background: green;
+}
+
+.offline {
+  background: red;
 }

@@ -32,10 +32,15 @@ window.addEventListener("DOMContentLoaded", function () {
     formdata.forEach(function(value, key){
         object[key] = value;
     });
-    var json = JSON.stringify(object);
+    // var json = JSON.stringify(object);
 
-    console.log('form values: ', json);
-    DBHelper.postReview(json);
+    console.log('form values: ', object);
+    console.log('status: ', navigator.onLine);
+    if (navigator.onLine == true) {
+      DBHelper.postReview(object);
+    } else {
+      DBHelper.storeReview(object);
+    }
 
     modal.style.display = "none";
     document.forms[0].reset();

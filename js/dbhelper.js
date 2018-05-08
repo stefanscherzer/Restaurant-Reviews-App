@@ -11,6 +11,7 @@ class DBHelper {
     open.onupgradeneeded = function() {
       var db = open.result;
       var store = db.createObjectStore("restaurants", {keyPath: "id"});
+      var reviews = db.createObjectStore("reviews", {keyPath: "id"});
     };
 
     return open;
@@ -48,6 +49,86 @@ class DBHelper {
       var store = tx.objectStore("restaurants");
 
       store.put(data);
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+          db.close();
+      };
+    }
+  }
+
+  static readReviewsIDB(callback) {
+    var open = DBHelper.initIDB();
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      var db = open.result;
+      var tx = db.transaction("reviews", "readonly");
+      var store = tx.objectStore("reviews");
+
+      var getReviews = store.getAll();
+
+      getReviews.onsuccess = function() {
+          callback(getReviews.result);
+      };
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+          db.close();
+      };
+    }
+  }
+
+  static writeReviewsIDB(data) {
+    var open = DBHelper.initIDB();
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      var db = open.result;
+      var tx = db.transaction("reviews", "readwrite");
+      var store = tx.objectStore("reviews");
+
+      // set uniqueID for the dataset
+      data['id'] = guid();
+      console.log('review data for IDB: ', data);
+
+      var updateReviewRequest = store.put(data);
+
+      updateReviewRequest.onsuccess = function() {
+        var msg = document.getElementById("msg_success");
+        msg.style.opacity = "1";
+        msg.style.display = "block";
+        console.log('success storing review!');
+      };
+
+      // Close the db when the transaction is done
+      tx.oncomplete = function() {
+          db.close();
+      };
+    };
+
+    open.onerror = function() {
+      console.log("There has been an error within writeReviewsIDB: " + open.error);
+      var msg = document.getElementById("msg_error");
+      msg.style.opacity = "1";
+      msg.style.display = "block";
+    };
+  }
+
+  static deleteReviewsIDB(reviewID) {
+    var open = DBHelper.initIDB();
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      var db = open.result;
+      var tx = db.transaction("reviews", "readwrite");
+      var store = tx.objectStore("reviews");
+
+      var deleteRequest = store.delete(reviewID);
+
+      deleteRequest.onsuccess = function() {
+          console.log('review ', reviewID, ' from IDB deleted');
+      };
 
       // Close the db when the transaction is done
       tx.oncomplete = function() {
@@ -233,7 +314,7 @@ class DBHelper {
     console.log('post review to API');
     fetch(DBHelper.REVIEW_POST_URL, {
       method: 'POST',
-      body: reviewData,
+      body: JSON.stringify(reviewData),
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
@@ -254,6 +335,49 @@ class DBHelper {
       msg.style.opacity = "1";
       msg.style.display = "block";
       console.log('error posting review: ', error);
+    });
+  }
+
+  static storeReview(reviewData) {
+    console.log('store review in indexedDB');
+    var response = DBHelper.writeReviewsIDB(reviewData);
+  }
+
+  static submitStoredReviews() {
+    DBHelper.readReviewsIDB((reviews) => {
+      if (typeof reviews !== 'undefined' && reviews.length > 0) {
+        console.log('reviews from IDB:', reviews);
+
+        // delete json[key];
+        reviews.map((review) => {
+          var reviewID = review['id'];
+          delete review['id'];
+          console.log('review: ', review);
+          console.log('post stored review to API');
+          fetch(DBHelper.REVIEW_POST_URL, {
+            method: 'POST',
+            body: JSON.stringify(review),
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            }),
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: 'same-origin', // include, same-origin, *omit
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // *client, no-referrer
+          })
+          .then(function() {
+            DBHelper.deleteReviewsIDB(reviewID);
+            console.log('success posting stored review!');
+          })
+          .catch(function(error) {
+            console.log('error posting stored review: ', error);
+          });
+        });
+
+      } else {
+        console.log('no stored reviews in IDB');
+      }
     });
   }
 
