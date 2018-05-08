@@ -11,7 +11,7 @@ class DBHelper {
     open.onupgradeneeded = function() {
       var db = open.result;
       var store = db.createObjectStore("restaurants", {keyPath: "id"});
-      var reviews = db.createObjectStore("reviews", {keyPath: "id"});
+      var reviews = db.createObjectStore("reviews", {keyPath: "id", autoIncrement: true});
     };
 
     return open;
@@ -88,8 +88,7 @@ class DBHelper {
       var tx = db.transaction("reviews", "readwrite");
       var store = tx.objectStore("reviews");
 
-      // set uniqueID for the dataset
-      data['id'] = guid();
+      console.log('IDB store autoIncrement: ', store.autoIncrement);
       console.log('review data for IDB: ', data);
 
       var updateReviewRequest = store.put(data);
@@ -348,7 +347,6 @@ class DBHelper {
       if (typeof reviews !== 'undefined' && reviews.length > 0) {
         console.log('reviews from IDB:', reviews);
 
-        // delete json[key];
         reviews.map((review) => {
           var reviewID = review['id'];
           delete review['id'];
