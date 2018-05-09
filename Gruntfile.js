@@ -135,7 +135,6 @@ module.exports = function(grunt) {
               'js/dbhelper.js',
               'js/main.js',
               'js/sidebar.js',
-              'js/gmap.js',
             ],
           'js/restaurant.min.js':
             [

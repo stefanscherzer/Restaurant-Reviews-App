@@ -68,27 +68,6 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 }
 
 /**
- * Initialize Google map, called from HTML.
- */
-window.initMap = () => {
-  let loc = {
-    lat: 40.722216,
-    lng: -73.987501
-  };
-  self.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: loc,
-    scrollwheel: false
-  });
-  updateRestaurants();
-
-  google.maps.event.addListenerOnce(map, 'idle', function(){
-    // do something only the first time the map is loaded
-    document.getElementsByTagName('iframe')[0].setAttribute('title', 'Google Maps for restaurants');
-  });
-}
-
-/**
  * Update page and map for current restaurants.
  */
 updateRestaurants = () => {
@@ -134,7 +113,13 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     ul.append(createRestaurantHTML(restaurant));
   });
-  addMarkersToMap();
+  if (document.getElementsByTagName('iframe')[0] != undefined && document.getElementsByTagName('iframe')[0].getAttribute('title') == 'Google Maps for restaurants') {
+    console.log('addMarkersToMap');
+    addMarkersToMap();
+  } else {
+    console.log('loadStaticMapsAPI');
+    loadStaticMapsAPI();
+  }
 }
 
 /**
@@ -177,9 +162,9 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
-  li.append(more)
+  li.append(more);
 
-  return li
+  return li;
 }
 
 /**
@@ -195,3 +180,41 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     self.markers.push(marker);
   });
 }
+
+loadStaticMapsAPI = (restaurants = self.restaurants) => {
+  let coordinates = '';
+  restaurants.forEach(restaurant => {
+    coordinates += '&markers=' + restaurant.latlng.lat + ',' + restaurant.latlng.lng;
+  });
+
+  let lat = 40.722216;
+  let lng = -73.987501;
+  let zoom = 12;
+
+  let mapURL = 'https://maps.googleapis.com/maps/api/staticmap?center=' + lat + ',' + lng + '&zoom=' + zoom + '&size=640x400&scale=2key=AIzaSyC_I5HXdV-tJTwj0ljdzbCx8DsxAL3ejmg' + coordinates;
+
+  const image = document.createElement('img');
+  image.src = mapURL;
+  image.id = 'staticMap';
+  image.alt = 'New York City';
+
+  document.getElementById('map').appendChild(image);
+}
+
+document.getElementById('map').addEventListener('mouseover', function(event) {
+  let mapsUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC_I5HXdV-tJTwj0ljdzbCx8DsxAL3ejmg&libraries=places';
+  let mapsInit = 'js/gmap.js';
+
+  [
+    mapsUrl,
+    mapsInit
+  ].forEach(function(src) {
+    var script = document.createElement('script');
+    script.src = src;
+    script.type = 'text/javascript';
+    script.async = false;
+    document.body.appendChild(script);
+  });
+}, {once : true});
+
+updateRestaurants();
