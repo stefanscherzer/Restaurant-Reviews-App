@@ -41,6 +41,19 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+  console.log('WORKER: fetch event in progress.');
+
+  /* We should only cache GET requests, and deal with the rest of method in the
+     client-side, by handling failed POST,PUT,PATCH,etc. requests.
+  */
+  if (event.request.method !== 'GET') {
+    /* If we don't block the event as shown below, then the request will go to
+       the network as usual.
+    */
+    console.log('WORKER: fetch event ignored.', event.request.method, event.request.url);
+    return;
+  }
+
   event.respondWith(caches.match(event.request).then(function(response) {
     // caches.match() always resolves
     // but in case of success response will have value

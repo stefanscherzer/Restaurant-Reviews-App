@@ -154,6 +154,23 @@ module.exports = function(grunt) {
       }
     },
 
+    removeHtmlComments: {
+      target: {
+        files: [{
+          src: 'index_.html',
+          dest: 'index.html'
+        },
+        {
+          src: 'about_.html',
+          dest: 'about.html'
+        },
+        {
+          src: 'restaurant_.html',
+          dest: 'restaurant.html'
+        }]
+      }
+    }
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify-es');
@@ -163,6 +180,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-mkdir');
+  grunt.loadNpmTasks('grunt-remove-html-comments');
   grunt.registerTask(
       'default',
       [
@@ -172,7 +190,8 @@ module.exports = function(grunt) {
         'responsive_images',
         'injector',
         'cssmin',
-        'uglify'
+        'uglify',
+        'removeHtmlComments'
       ]);
 
 };
