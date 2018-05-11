@@ -145,6 +145,11 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
+  static get REVIEWS_GET_URL() {
+    const port = 1337; // Change this to your server port
+    return `http://localhost:${port}/reviews/?restaurant_id=`;
+  }
+
   static get REVIEW_POST_URL() {
     const port = 1337; // Change this to your server port
     return `http://localhost:${port}/reviews/`;
@@ -163,7 +168,38 @@ class DBHelper {
         fetch(DBHelper.DATA_URL, {method: "GET"})
           .then((resp) => resp.json())
           .then(function(data) {
-            data.map(restaurant => DBHelper.writeIDB(restaurant));
+            // var data =
+            data.map(function(restaurant) {
+              const newRestaurant = await fetch(DBHelper.REVIEWS_GET_URL + restaurant.id, {method: "GET"})
+                .then(response =>
+                  response.json().then(data => ({
+                    data: data,
+                    status: response.status
+                    })
+                  )
+                )
+                .then((res) => {
+                  // console.log(res.status, res.data);
+                  restaurant['reviews'] = res.data;
+                  console.log('restaurant ', restaurant.id, ': ', restaurant);
+                  DBHelper.writeIDB(restaurant);
+                  return restaurant;
+                })
+                .catch(function(error) {
+                  console.log(error);
+                });
+
+              // var newData;
+              // newData = newRestaurant
+              //   .then(response =>
+              //     response.json()
+              //   )
+              //   .then(function(res) {
+              //     return res;
+              //   });
+              console.log('new: ', newRestaurant);
+            });
+            // console.log('data: ', data);
             callback(null, data);
           })
           .catch(function(error) {

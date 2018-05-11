@@ -1,5 +1,18 @@
 let restaurant;
 var map;
+let month = new Array();
+month[0] = "January";
+month[1] = "February";
+month[2] = "March";
+month[3] = "April";
+month[4] = "May";
+month[5] = "June";
+month[6] = "July";
+month[7] = "August";
+month[8] = "September";
+month[9] = "October";
+month[10] = "November";
+month[11] = "December";
 
 /**
  * Initialize Google map, called from HTML.
@@ -151,7 +164,8 @@ createReviewHTML = (review) => {
 
   const date = document.createElement('div');
   date.classList.add('review-date');
-  date.innerHTML = review.date;
+  let d = new Date(review.updatedAt)
+  date.innerHTML = month[d.getMonth()] + ' ' + d.getDay() + ', ' + d.getFullYear();
   reviewHeader.appendChild(date);
 
   const rating = document.createElement('div');
