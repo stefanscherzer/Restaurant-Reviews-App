@@ -164,6 +164,13 @@ createRestaurantHTML = (restaurant) => {
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more);
 
+  const favStatus = (restaurant.is_favorite == undefined ? 'false' : String(restaurant.is_favorite));
+  console.log('status: ', favStatus, ' --- ', String(restaurant.is_favorite));
+  const fav = document.createElement('button');
+  fav.className = (favStatus == 'false' ? 'faBtn fa fa-star-o' : 'faBtn fa fa-star');
+  fav.value = restaurant.id + '_' + favStatus;
+  li.append(fav);
+
   return li;
 }
 
@@ -216,5 +223,26 @@ document.getElementById('map').addEventListener('mouseover', function(event) {
     document.body.appendChild(script);
   });
 }, {once : true});
+
+activateFavoriteButtons = () => {
+  Array.from(document.getElementsByClassName('faBtn')).forEach(function(element) {
+    element.addEventListener('click', function(e) {
+      console.log('btn value: ', this.value);
+      let tgt = e.target;
+      tgt.classList.toggle('fa-star');
+      tgt.classList.toggle('fa-star-o');
+
+      let res = this.value.split('_');
+      let favorite = (res[1] == 'true' ? 'false' : 'true');
+      tgt.value = res[0] + '_' + favorite;
+      DBHelper.toggleFavoriteRestaurant(res[0], favorite);
+      DBHelper.clearIDB();
+    });
+  });
+}
+
+window.addEventListener("load", function () {
+  activateFavoriteButtons();
+});
 
 updateRestaurants();

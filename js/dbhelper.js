@@ -57,6 +57,41 @@ class DBHelper {
     }
   }
 
+  static clearIDB() {
+    var open = DBHelper.initIDB();
+
+    open.onsuccess = function() {
+      // Start a new transaction
+      var db = open.result;
+      var transaction = db.transaction("restaurants", "readwrite");
+
+      // report on the success of the transaction completing, when everything is done
+      transaction.oncomplete = function(event) {
+        console.log('clearIDB -- Transaction completed.');
+      };
+
+      transaction.onerror = function(event) {
+        console.log('clearIDB -- Transaction not opened due to error: ' + transaction.error);
+      };
+
+      // create an object store on the transaction
+      var objectStore = transaction.objectStore("restaurants");
+
+      // Make a request to clear all the data out of the object store
+      var objectStoreRequest = objectStore.clear();
+
+      objectStoreRequest.onsuccess = function(event) {
+        // report the success of our request
+        console.log('clearIDB -- success');
+      };
+
+      // Close the db when the transaction is done
+      transaction.oncomplete = function() {
+          db.close();
+      };
+    }
+  }
+
   static readRestaurentReviewsIDB(id, callback) {
     var open = DBHelper.initIDB();
 
@@ -219,6 +254,22 @@ class DBHelper {
   static get REVIEW_POST_URL() {
     const port = 1337; // Change this to your server port
     return `http://localhost:${port}/reviews/`;
+  }
+
+  static get FAVORITE_PUT_URL() {
+      const port = 1337; // Change this to your server port
+      return `http://localhost:${port}/restaurants/<restaurant_id>/?is_favorite=`;
+  }
+
+  static toggleFavoriteRestaurant(restaurant_id, is_favorite) {
+    let url = DBHelper.FAVORITE_PUT_URL.replace('<restaurant_id>', restaurant_id) + is_favorite;
+    fetch(url, {method: "PUT"})
+      .then(function() {
+        console.log('success PUT favorite: ', url);
+      })
+      .catch(function(error) {
+        console.log('error PUT favorite: ', error);
+      });
   }
 
   /**

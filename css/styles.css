@@ -777,3 +777,16 @@ input[type=text], select, textarea {
 .offline {
   background: red;
 }
+
+/* ============= Favorite Restaurant Indicator =========== */
+
+.faBtn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 3px 5px;
+  margin-left: 50px;
+}
+
+.fa::after {
+  content: ' Favorite'
+}
