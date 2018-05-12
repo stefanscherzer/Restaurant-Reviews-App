@@ -56,8 +56,13 @@ fetchRestaurantFromURL = (callback) => {
         console.error(error);
         return;
       }
-      fillRestaurantHTML();
-      callback(null, restaurant)
+      console.log('restaurant_id: ', restaurant.id);
+      DBHelper.fetchReviewsByRestaurantId(restaurant.id, (error, reviews) => {
+        console.log('restaurant_id: ', restaurant.id, ' - reviews: ', reviews);
+        restaurant['reviews'] = reviews;
+        fillRestaurantHTML();
+        callback(null, restaurant)
+      });
     });
   }
 }

@@ -511,15 +511,6 @@
         "updatedAt": 1504095567183,
         "rating": 4,
         "comments": "For a Michelin star restaurant, it's fairly priced and the food is fairly good. Started with a strawberry margarita which was good in flavor but not much alcohol. Had the chicken enchiladas with salsa verde and it was really good. Great balance in flavor and a good portion. Extra tasty with their hot sauces. My wife had the lamb but it was a bit too salty for our taste. Although, it was cooked very well and fell off the bone. The highlight of the night was the tres leches cake. Probably the best I've ever had to be honest. Not too sweet and very milky. Overall, one of my top 3 favorite Mexican in NY."
-      },
-      {
-        "restaurant_id": "2",
-        "name": "Hans",
-        "rating": "2",
-        "comments": "aksljd fölkaj sdf\r\njaslödkfj alöksd jf\r\nja lsökdfj alöksdj f",
-        "createdAt": "2018-05-11T20:10:51.099Z",
-        "updatedAt": "2018-05-11T20:10:51.099Z",
-        "id": 31
       }
     ]
   },
@@ -575,7 +566,7 @@
       "id": 10
     },
     "reviews": {
-      "id": 31
+      "id": 37
     }
   }
 }
