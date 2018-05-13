@@ -167,10 +167,18 @@ createRestaurantHTML = (restaurant) => {
 
   const favStatus = (restaurant.is_favorite == undefined ? 'false' : String(restaurant.is_favorite));
   console.log('status: ', favStatus, ' --- ', String(restaurant.is_favorite));
-  const fav = document.createElement('button');
-  fav.className = (favStatus == 'false' ? 'faBtn fa fa-star-o' : 'faBtn fa fa-star');
-  fav.value = restaurant.id + '_' + favStatus;
-  li.append(fav);
+  const favA = document.createElement('label');
+  favA.className = 'switch';
+  const favB = document.createElement('input');
+  favB.type = 'checkbox';
+  favB.className = 'faBtn';
+  favB.defaultChecked = (favStatus == 'true');
+  favB.value = restaurant.id + '_' + favStatus;
+  const favC = document.createElement('span');
+  favC.className = 'slider round';
+  favA.append(favB);
+  favA.append(favC);
+  li.append(favA);
 
   return li;
 }
@@ -230,12 +238,9 @@ activateFavoriteButtons = () => {
   Array.from(document.getElementsByClassName('faBtn')).forEach(function(element) {
     element.addEventListener('click', function(e) {
       console.log('btn value: ', this.value);
-      let tgt = e.target;
-      tgt.classList.toggle('fa-star');
-      tgt.classList.toggle('fa-star-o');
-
       let res = this.value.split('_');
       let favorite = (res[1] == 'true' ? 'false' : 'true');
+      let tgt = e.target;
       tgt.value = res[0] + '_' + favorite;
       DBHelper.toggleFavoriteRestaurant(res[0], favorite);
       DBHelper.clearIDB();

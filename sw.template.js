@@ -1,4 +1,4 @@
-const version = '0.1.4';
+const version = '0.1.5';
 const staticCacheName = `restaurants-${version}`;
 
 self.addEventListener('install', function(event) {
@@ -16,7 +16,6 @@ self.addEventListener('install', function(event) {
         `/js/about.min.js?timestamp=${timeStamp}`,
         // injector:images
         // endinjector
-        `https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css`,
       ])
       .then(() => self.skipWaiting());
     })
