@@ -113,6 +113,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     ul.append(createRestaurantHTML(restaurant));
   });
+  activateFavoriteButtons();
   if (document.getElementsByTagName('iframe')[0] != undefined && document.getElementsByTagName('iframe')[0].getAttribute('title') == 'Google Maps for restaurants') {
     console.log('addMarkersToMap');
     addMarkersToMap();
@@ -225,6 +226,7 @@ document.getElementById('map').addEventListener('mouseover', function(event) {
 }, {once : true});
 
 activateFavoriteButtons = () => {
+  console.log('activateFavoriteButtons now ...');
   Array.from(document.getElementsByClassName('faBtn')).forEach(function(element) {
     element.addEventListener('click', function(e) {
       console.log('btn value: ', this.value);
@@ -240,9 +242,5 @@ activateFavoriteButtons = () => {
     });
   });
 }
-
-window.addEventListener("load", function () {
-  activateFavoriteButtons();
-});
 
 updateRestaurants();
