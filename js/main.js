@@ -174,6 +174,13 @@ createRestaurantHTML = (restaurant) => {
   favB.className = 'faBtn';
   favB.defaultChecked = (favStatus == 'true');
   favB.value = restaurant.id + '_' + favStatus;
+  favB.id = 'faBtn' + restaurant.id;
+  var role = document.createAttribute("role");
+  role.value = "switch";
+  favB.setAttributeNode(role);
+  var ariaChecked = document.createAttribute("aria-checked");
+  ariaChecked.value = favStatus;
+  favB.setAttributeNode(ariaChecked);
   const favC = document.createElement('span');
   favC.className = 'slider round';
   favA.append(favB);
